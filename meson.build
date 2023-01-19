@@ -11,3 +11,10 @@ project('unity', 'c',
 
 subdir('src')
 unity_dep = declare_dependency(link_with: unity_lib, include_directories: unity_dir)
+
+
+
+executable('byron', 
+  'byron/test1.c',
+  'byron/test2.c',
+   dependencies: unity_dep)
