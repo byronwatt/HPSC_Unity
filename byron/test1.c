@@ -1,5 +1,3 @@
-#include "unity.h"
-
 #include "hpsc_unity.h"
 
 // note: setUp and tearDown are global functions !
