@@ -1,27 +1,10 @@
-#include "unity.h"
-
 #include "hpsc_unity.h"
-
-static struct test_defn_t *global_test_list = 0;
-static struct test_defn_t *global_test_list_tail = 0;
-
-void hpsc_add_test( test_defn_t *link )
-{
-    if (global_test_list == 0)
-    {
-        global_test_list = link;
-        global_test_list_tail = link;
-    }
-    else
-    {
-        global_test_list_tail->next = link;
-        global_test_list_tail = link;
-        link->next = NULL;
-    }
-}
+#include "hpsc_arg.h"
+#include <stddef.h>
 
 // not needed when using generate_test_runner.rb
-int main(void) {
+int main(int argc, char **argv) {
+    parse_args( argc, argv );
     UNITY_BEGIN();
     for (test_defn_t *link = global_test_list;
         link != NULL;
