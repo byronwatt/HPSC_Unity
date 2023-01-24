@@ -29,6 +29,7 @@ void hpsc_add_test( test_defn_t * );
     \
     void test_function(void); \
     \
+    /* a static structure used to register a test function */ \
     static test_defn_t test_definition_##test_function = { \
         .func = test_function, \
         .func_name = #test_function, \

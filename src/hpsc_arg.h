@@ -25,16 +25,18 @@ extern void parse_args( int argc, char *argv[] );
  * allow the variable to be set by a command line option.
  */
 #define INT32_ARG( variable, name, help ) \
+    /* a static structure used to associate a variable with a argument parsing function */ \
     static hpsc_int32_arg_t arg_defn_##variable = { \
         .base = { \
-        .next = NULL, \
-        .arg_name = name, \
-        .arg_help = help, \
-        .arg_parse = (hpsc_arg_parse_fn)hpsc_int32_parse, \
+            .next = NULL, \
+            .arg_name = name, \
+            .arg_help = help, \
+            .arg_parse = (hpsc_arg_parse_fn)hpsc_int32_parse, \
         }, \
         .var = &variable \
     }; \
     \
+    /* this function is called before main() because of the __attribute__((constructor)) */ \
     __attribute__((constructor)) void register_##variable() { \
         hpsc_add_arg( (hpsc_arg_defn_t*)&arg_defn_##variable ); \
     }
