@@ -37,6 +37,7 @@ void hpsc_add_test( test_defn_t * );
         .next = NULL, \
     }; \
     \
+    /* this function gets called before main() because it has attribute((__constructor__ )) */ \
     __attribute__((constructor)) void register_##test_function() { \
         hpsc_add_test( &test_definition_##test_function ); \
     } \
